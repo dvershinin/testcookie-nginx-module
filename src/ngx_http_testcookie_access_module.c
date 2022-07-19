@@ -1373,7 +1373,8 @@ ngx_http_testcookie_get_uid(ngx_http_request_t *r, ngx_http_testcookie_conf_t *c
 #if defined(nginx_version) && nginx_version >= 1023000
     if (ngx_http_parse_multi_header_lines(r, r->headers_in.cookie, &conf->name, &ctx->cookie) == NULL) {
 #else
-    if (ngx_http_parse_multi_header_lines(&r->headers_in.cookies, &conf->name, &ctx->cookie) == NGX_DECLINED) {
+    n = ngx_http_parse_multi_header_lines(&r->headers_in.cookies, &conf->name, &ctx->cookie);
+    if (n == NGX_DECLINED) {
 #endif
         return ctx;
     }
