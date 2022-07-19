@@ -1241,9 +1241,12 @@ ngx_http_testcookie_get_uid(ngx_http_request_t *r, ngx_http_testcookie_conf_t *c
 #if defined(nginx_version) && nginx_version >= 1023000
     ngx_table_elt_t             *cookie;
 #else
-    ngx_int_t                   n;
     ngx_table_elt_t             **cookies;
 #endif
+#endif
+
+#if defined(nginx_version) && nginx_version < 1023000
+    ngx_int_t                   n;
 #endif
     ngx_http_testcookie_conf_t  *ucf = conf;
     ngx_http_testcookie_ctx_t   *ctx;
